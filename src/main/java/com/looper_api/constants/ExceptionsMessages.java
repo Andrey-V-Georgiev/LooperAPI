@@ -10,4 +10,10 @@ public class ExceptionsMessages {
             "Palindrome string must be at least one character long"
     );
 
+    public static final String THREAD_WITH_ID_NOT_FOUND = "Thread with Id %d not found";
+
+    public static final String KILL_ALL_THREADS_INTERRUPTED_EXCEPTION = String.format(
+            "InterruptedException through killing all threads"
+    );
+
 }
