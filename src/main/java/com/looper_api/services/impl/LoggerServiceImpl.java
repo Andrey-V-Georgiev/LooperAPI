@@ -60,7 +60,7 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Prepare kill log string */
         String killLogDetails = String.format(
-                "KILL | Id: %d |Name: %s | State: %s | Ldt: %s",
+                "KILL | Id: %d | Name: %s | State: %s | Ldt: %s",
                 thread.getId(),
                 thread.getName(),
                 thread.getState(),
