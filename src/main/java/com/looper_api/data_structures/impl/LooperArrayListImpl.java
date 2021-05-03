@@ -1,5 +1,6 @@
 package com.looper_api.data_structures.impl;
 
+import com.google.gson.annotations.Expose;
 import com.looper_api.data_structures.LooperArrayList;
 
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.Iterator;
 public class LooperArrayListImpl<E> implements LooperArrayList<E> {
 
     private static final int INITIAL_SIZE = 4;
+    @Expose
     private Object[] elements;
     private int size;
     private int capacity;
@@ -248,6 +250,15 @@ public class LooperArrayListImpl<E> implements LooperArrayList<E> {
             sb.append(this.get(i));
         }
         return sb.toString();
+    }
+
+    @Override
+    public void resizeTight() {
+
+        /* Resize collection capacity to his size */
+        Object[] tmp = new Object[this.size];
+        if (this.size >= 0) System.arraycopy(this.elements, 0, tmp, 0, this.size);
+        this.elements = tmp;
     }
 
     /**

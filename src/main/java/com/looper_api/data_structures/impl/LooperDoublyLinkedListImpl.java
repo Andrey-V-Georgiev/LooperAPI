@@ -1,6 +1,7 @@
 package com.looper_api.data_structures.impl;
 
 
+import com.google.gson.annotations.Expose;
 import com.looper_api.data_structures.LooperArrayList;
 import com.looper_api.data_structures.LooperLinkedList;
 
@@ -11,6 +12,7 @@ public class LooperDoublyLinkedListImpl<E> implements LooperLinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
     private int size;
+
 
     private static class Node<E> {
         private E value;

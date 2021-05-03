@@ -4,10 +4,10 @@ package com.looper_api.web.rest_controllers;
 import com.google.gson.Gson;
 import com.looper_api.constants.ExceptionsMessages;
 import com.looper_api.constants.GlobalConstants;
-import com.looper_api.models.binding.CsvInputDTO;
+import com.looper_api.models.binding.data_structures.CsvImportDTO;
 import com.looper_api.services.CsvArrayListService;
 import com.looper_api.services.PalindromeLinkedListService;
-import com.looper_api.utils.ValidationUtil;
+import com.looper_api.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,19 +20,19 @@ import java.io.IOException;
 public class DataStructuresController {
 
     private final Gson gson;
-    private final ValidationUtil validationUtil;
+    private final ValidationService validationService;
     private final CsvArrayListService csvArrayListService;
     private final PalindromeLinkedListService palindromeLinkedListService;
 
     @Autowired
     public DataStructuresController(
             Gson gson,
-            ValidationUtil validationUtil,
+            ValidationService validationService,
             CsvArrayListService csvArrayListService,
             PalindromeLinkedListService palindromeLinkedListService) {
 
         this.gson = gson;
-        this.validationUtil = validationUtil;
+        this.validationService = validationService;
         this.csvArrayListService = csvArrayListService;
         this.palindromeLinkedListService = palindromeLinkedListService;
     }
@@ -48,24 +48,24 @@ public class DataStructuresController {
     public ResponseEntity<Object> convertToCSV(
             @RequestBody String inputJson) throws IOException {
 
-        CsvInputDTO csvInputDTO;
+        CsvImportDTO csvImportDTO;
         try {
             /* Convert json to DTO */
-            csvInputDTO = this.gson.fromJson(inputJson, CsvInputDTO.class);
+            csvImportDTO = this.gson.fromJson(inputJson, CsvImportDTO.class);
         } catch (Exception e) {
             /* If user gives wrong type of input array */
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(ExceptionsMessages.CSV_INPUT_INVALID_ARRAY_ELEMENTS_TYPE);
         }
-        /* Validate is follow the validation requirements */
-        if (this.validationUtil.isValid(csvInputDTO)) {
+        /* Validate input is following the validation requirements */
+        if (this.validationService.isValid(csvImportDTO)) {
             /* Convert input Json to CSV output */
-            String csvJSON = this.csvArrayListService.convertToCSV(csvInputDTO);
+            String csvJSON = this.csvArrayListService.convertToCSV(csvImportDTO);
             return ResponseEntity.ok(csvJSON);
         } else {
             /* In case of validation violations, response with violations messages */
-            String violationsString = this.validationUtil.violationsString(csvInputDTO);
+            String violationsString = this.validationService.violationsString(csvImportDTO);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(violationsString);
         }
     }
@@ -107,7 +107,6 @@ public class DataStructuresController {
     public ResponseEntity<Object> findLongestPalindrome(
             @RequestParam("palindrome-string") String palindromeString) throws IOException {
 
-        System.out.println();
         if (palindromeString.length() < 1) {
             /* If user gives empty palindrome string as query param */
             return ResponseEntity

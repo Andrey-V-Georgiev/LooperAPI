@@ -1,19 +1,19 @@
-package com.looper_api.models.binding;
+package com.looper_api.models.binding.data_structures;
 
 import com.google.gson.annotations.Expose;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class CsvInputDTO {
+public class CsvImportDTO {
 
     @Expose
     private Integer[] numbers;
 
-    public CsvInputDTO() {
+    public CsvImportDTO() {
     }
 
-    public CsvInputDTO(Integer[] numbers) {
+    public CsvImportDTO(Integer[] numbers) {
         this.numbers = numbers;
     }
 

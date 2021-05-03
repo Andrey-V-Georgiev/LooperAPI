@@ -1,8 +1,11 @@
-package com.looper_api.models.binding;
+package com.looper_api.models.binding.loopers;
 
 import com.google.gson.annotations.Expose;
 
-public class LooperInputDTO {
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+public class LooperImportDTO {
 
     @Expose
     private Long loopsCount;
@@ -11,15 +14,16 @@ public class LooperInputDTO {
     @Expose
     private String text;
 
-    public LooperInputDTO() {
+    public LooperImportDTO() {
     }
 
-    public LooperInputDTO(Long loopsCount, Integer sleepMilliseconds, String text) {
+    public LooperImportDTO(Long loopsCount, Integer sleepMilliseconds, String text) {
         this.loopsCount = loopsCount;
         this.sleepMilliseconds = sleepMilliseconds;
         this.text = text;
     }
 
+    @Min(value = 1, message = "Loops count must contains at least one iteration")
     public Long getLoopsCount() {
         return loopsCount;
     }
@@ -28,6 +32,7 @@ public class LooperInputDTO {
         this.loopsCount = loopsCount;
     }
 
+    @Min(value = 100, message = "Timeout between loops iterations must be at least 100 milliseconds")
     public Integer getSleepMilliseconds() {
         return sleepMilliseconds;
     }
@@ -36,6 +41,7 @@ public class LooperInputDTO {
         this.sleepMilliseconds = sleepMilliseconds;
     }
 
+    @Size(min = 1, message = "Import text must be at least one character long")
     public String getText() {
         return text;
     }

@@ -9,9 +9,11 @@ public interface FileService {
 
     List<String> readFileToLines(String filePath) throws IOException;
 
-    void writeFile(String content, String filePath) throws IOException;
+    void overwriteFile(String content, String filePath) throws IOException;
 
-    boolean createDir(String dirPath);
+    void overrideFile(String content, String filePath) throws IOException;
+
+    boolean createDirIfNotExists(String dirPath);
 
     void addLineToFile(String rowContent, String filePath) throws IOException, URISyntaxException;
 }

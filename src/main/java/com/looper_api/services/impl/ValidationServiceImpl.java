@@ -1,19 +1,20 @@
-package com.looper_api.utils.impl;
+package com.looper_api.services.impl;
 
-import com.looper_api.utils.ValidationUtil;
+import com.looper_api.services.ValidationService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
-public class ValidationUtilImpl implements ValidationUtil {
+@Service
+public class ValidationServiceImpl implements ValidationService {
 
     private Validator validator;
 
-    public ValidationUtilImpl() {
+    public ValidationServiceImpl() {
         this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 

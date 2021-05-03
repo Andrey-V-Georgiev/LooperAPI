@@ -1,4 +1,4 @@
-package com.looper_api.models.binding;
+package com.looper_api.models.binding.data_structures;
 
 import com.google.gson.annotations.Expose;
 

@@ -1,9 +1,9 @@
-package com.looper_api.utils;
+package com.looper_api.services;
 
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-public interface ValidationUtil {
+public interface ValidationService {
 
     <T> boolean isValid(T entity);
 

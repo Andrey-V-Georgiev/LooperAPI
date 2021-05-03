@@ -5,7 +5,7 @@ import com.looper_api.data_structures.LooperArrayList;
 import com.looper_api.data_structures.LooperLinkedList;
 import com.looper_api.data_structures.impl.LooperArrayListImpl;
 import com.looper_api.data_structures.impl.LooperDoublyLinkedListImpl;
-import com.looper_api.models.binding.PalindromeLongestExportDTO;
+import com.looper_api.models.binding.data_structures.PalindromeLongestExportDTO;
 import com.looper_api.services.PalindromeLinkedListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

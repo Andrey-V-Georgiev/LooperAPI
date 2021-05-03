@@ -12,8 +12,20 @@ public class ExceptionsMessages {
 
     public static final String THREAD_WITH_ID_NOT_FOUND = "Thread with Id %d not found";
 
-    public static final String KILL_ALL_THREADS_INTERRUPTED_EXCEPTION = String.format(
-            "InterruptedException through killing all threads"
+    public static final String THREAD_IS_ALREADY_TERMINATED = "Thread with Id %d is already terminated";
+
+    public static final String KILL_ALL_LOOPERS_INTERNAL_EXCEPTION = String.format(
+            "Exception appeared through the process of killing all loopers"
     );
+
+    public static final String FIND_ALL_LOGS_INTERNAL_EXCEPTION = String.format(
+            "Exception appeared through the process of finding all log records"
+    );
+
+    public static final String LOOPER_STARTING_INVALID_INPUT_SCHEMA = String.format(
+            "Invalid JSON input schema on starting new looper"
+    );
+
+    public static final String LOOPER_KILL_THREAD_INVALID_INPUT_TYPE = "Thread Id must be of type (Long | Integer)";
 
 }

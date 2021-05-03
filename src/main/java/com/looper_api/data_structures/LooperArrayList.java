@@ -23,4 +23,6 @@ public interface LooperArrayList<E> extends Iterable<E> {
     String convertToCSV();
 
     String findLongestPalindrome();
+
+    void resizeTight();
 }

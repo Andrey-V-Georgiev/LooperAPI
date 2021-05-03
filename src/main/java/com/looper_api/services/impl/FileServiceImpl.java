@@ -29,7 +29,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void writeFile(String content, String filePath) throws IOException {
+    public void overwriteFile(String content, String filePath) throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
             Files.write(
@@ -41,7 +41,17 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public boolean createDir(String dirPath) {
+    public void overrideFile(String content, String filePath) throws IOException {
+        File file = new File(filePath);
+        Files.write(
+                Paths.get(filePath),
+                Collections.singleton(content),
+                StandardCharsets.UTF_8
+        );
+    }
+
+    @Override
+    public boolean createDirIfNotExists(String dirPath) {
         boolean createdDir = false;
         File dir = new File(dirPath);
         if (!dir.exists()) {

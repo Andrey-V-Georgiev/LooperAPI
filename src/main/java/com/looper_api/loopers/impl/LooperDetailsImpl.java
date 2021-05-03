@@ -1,11 +1,14 @@
-package com.looper_api.implementations;
+package com.looper_api.loopers.impl;
 
-public class ThreadDetails {
+import com.looper_api.loopers.LooperDetails;
+import com.looper_api.loopers.LooperRunnable;
+
+public class LooperDetailsImpl implements LooperDetails {
 
     private LooperRunnable runnable;
     private Thread thread;
 
-    public ThreadDetails(LooperRunnable runnable, Thread thread) {
+    public LooperDetailsImpl(LooperRunnable runnable, Thread thread) {
         this.runnable = runnable;
         this.thread = thread;
     }
