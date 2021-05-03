@@ -37,25 +37,25 @@ and will create inside text file "LooperAPI_DB"(if the file already exists, will
 "numbers" must be array of integers    
 Return given integers from the list as comma separated values(CSV)    
 @param inputJson example: "numbers": [1,2,3,4,5,6]`     
-__PUT /data-structures/csv-string__
+* __PUT /data-structures/csv-string__
 
 `Expect query param: "palindrome"
 Return boolean depends on check if input string is valid palindrome
 @param palindrome query example: ?palindrome=ABCDFDCBA`               
-GET /data-structures/palindrome-check 
+* __GET /data-structures/palindrome-check__ 
  
 `Expect query param: "palindrome-string"
 Return the longest palindrome contained in the input string 
 @param palindromeString query example: ?palindrome-string=ZABCBAVUIG`                         
-GET /data-structures/longest-palindrome
+* __GET /data-structures/longest-palindrome__
 
 ### Looper routes:     
 
 `Return JSON object with the details of all the loopers`      
-GET /looper/all-loopers-details     
+* __GET /looper/all-loopers-details__     
 
 `Return the details of all logs as String representation`     
-GET /looper/all-logs-details     
+* __GET /looper/all-logs-details__     
 
 `Expect JSON object in the request body  
 Start new thread for looper and log his iteration details to the log file        
@@ -66,14 +66,14 @@ Return the details of the started looper in JSON format
    "sleepMilliseconds": 1000, //Long                
    "text": "Some text" //String             
 }`          
-POST /looper/start-new-looper                            
+* __POST /looper/start-new-looper__                            
 
 `Expect thread Id (long or integer) as path variable                
 Kill looper by his Id                
 Return the details of the killed looper in JSON format                
 @param threadIdStr example: 51`                
-DELETE /looper/kill-looper/{thread-id}                
+* __DELETE /looper/kill-looper/{thread-id}__                
 
 `Terminate all threads and return the details of all killed loopers as JSON`          
-DELETE /looper/kill-all-loopers                  
+* __DELETE /looper/kill-all-loopers__                  
 
