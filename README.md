@@ -33,31 +33,31 @@ and will create inside text file "LooperAPI_DB"(if the file already exists, will
 
 ### Data structures routes: 
 
-`Expect JSON object in the request body, with field: "numbers"    
+* __PUT /data-structures/csv-string__ `Expect JSON object in the request body, with field: "numbers"    
 "numbers" must be array of integers    
 Return given integers from the list as comma separated values(CSV)    
 @param inputJson example: "numbers": [1,2,3,4,5,6]`     
-* __PUT /data-structures/csv-string__
 
-`Expect query param: "palindrome"
+
+* __GET /data-structures/palindrome-check__ `Expect query param: "palindrome"
 Return boolean depends on check if input string is valid palindrome
 @param palindrome query example: ?palindrome=ABCDFDCBA`               
-* __GET /data-structures/palindrome-check__ 
  
-`Expect query param: "palindrome-string"
+ 
+* __GET /data-structures/longest-palindrome__ `Expect query param: "palindrome-string"
 Return the longest palindrome contained in the input string 
 @param palindromeString query example: ?palindrome-string=ZABCBAVUIG`                         
-* __GET /data-structures/longest-palindrome__
+
 
 ### Looper routes:     
 
-`Return JSON object with the details of all the loopers`      
-* __GET /looper/all-loopers-details__     
+* __GET /looper/all-loopers-details__ `Return JSON object with the details of all the loopers`      
+     
 
-`Return the details of all logs as String representation`     
-* __GET /looper/all-logs-details__     
+* __GET /looper/all-logs-details__ `Return the details of all logs as String representation`     
+     
 
-`Expect JSON object in the request body  
+* __POST /looper/start-new-looper__ `Expect JSON object in the request body  
 Start new thread for looper and log his iteration details to the log file        
 Return the details of the started looper in JSON format               
 @param inputJson example:          
@@ -66,14 +66,14 @@ Return the details of the started looper in JSON format
    "sleepMilliseconds": 1000, //Long                
    "text": "Some text" //String             
 }`          
-* __POST /looper/start-new-looper__                            
+                            
 
-`Expect thread Id (long or integer) as path variable                
+* __DELETE /looper/kill-looper/{thread-id}__ `Expect thread Id (long or integer) as path variable                
 Kill looper by his Id                
 Return the details of the killed looper in JSON format                
 @param threadIdStr example: 51`                
-* __DELETE /looper/kill-looper/{thread-id}__                
+                
 
-`Terminate all threads and return the details of all killed loopers as JSON`          
-* __DELETE /looper/kill-all-loopers__                  
+* __DELETE /looper/kill-all-loopers__ `Terminate all threads and return the details of all killed loopers as JSON`          
+                  
 
