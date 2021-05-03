@@ -37,16 +37,16 @@ and will create inside text file "LooperAPI_DB"(if the file already exists, will
 "numbers" must be array of integers    
 Return given integers from the list as comma separated values(CSV)    
 @param inputJson example: "numbers": [1,2,3,4,5,6]`     
-PUT /data-structures/csv-string
+__PUT /data-structures/csv-string__
 
 `Expect query param: "palindrome"
 Return boolean depends on check if input string is valid palindrome
-@param palindrome query example: ?palindrome=ABCDFDCBA`
+@param palindrome query example: ?palindrome=ABCDFDCBA`               
 GET /data-structures/palindrome-check 
  
 `Expect query param: "palindrome-string"
 Return the longest palindrome contained in the input string 
-@param palindromeString query example: ?palindrome-string=ZABCBAVUIG` 
+@param palindromeString query example: ?palindrome-string=ZABCBAVUIG`                         
 GET /data-structures/longest-palindrome
 
 ### Looper routes:     
