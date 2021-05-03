@@ -16,6 +16,8 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<String> readFileToLines(String filePath) throws IOException {
+
+        /* Convert all lines from text file to strings */
         List<String> fileLines = new ArrayList<>();
         File file = new File(filePath);
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -29,20 +31,9 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void overwriteFile(String content, String filePath) throws IOException {
-        File file = new File(filePath);
-        if (!file.exists()) {
-            Files.write(
-                    Paths.get(filePath),
-                    Collections.singleton(content),
-                    StandardCharsets.UTF_8
-            );
-        }
-    }
-
-    @Override
     public void overrideFile(String content, String filePath) throws IOException {
-        File file = new File(filePath);
+
+        /* Write new file instead of the old one */
         Files.write(
                 Paths.get(filePath),
                 Collections.singleton(content),
@@ -52,6 +43,8 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public boolean createDirIfNotExists(String dirPath) {
+
+        /* Check does directory with this path exists and if not make one */
         boolean createdDir = false;
         File dir = new File(dirPath);
         if (!dir.exists()) {
@@ -63,12 +56,16 @@ public class FileServiceImpl implements FileService {
     @Override
     public void addLineToFile(String rowContent, String filePath) throws IOException {
         File file = new File(filePath);
-        FileWriter fr = new FileWriter(file, true);
-        BufferedWriter br = new BufferedWriter(fr);
-        br.write(rowContent);
-        br.write(System.lineSeparator());
 
-        br.close();
-        fr.close();
+        /* Write new lines to the file if exists */
+        if (file.exists()) {
+            FileWriter fr = new FileWriter(file, true);
+            BufferedWriter br = new BufferedWriter(fr);
+            br.write(rowContent);
+            br.write(System.lineSeparator());
+
+            br.close();
+            fr.close();
+        }
     }
 }

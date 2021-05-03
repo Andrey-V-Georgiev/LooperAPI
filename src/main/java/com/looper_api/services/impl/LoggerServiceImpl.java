@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -27,12 +29,13 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Prepare log string */
         String iterationLogDetails = String.format(
-                "Id: %d |Name: %s | State: %s | Message: %s_%d | Iteration: %d",
+                "Id: %d |Name: %s | State: %s | Message: %s_%d | Iteration: %d | Ldt: %s",
                 thread.getId(),
                 thread.getName(),
                 thread.getState(),
                 text, iteration,
-                iteration);
+                iteration,
+                this.localDateTimeNow());
 
         /* Log details to the file system DB file and print them to console */
         this.logToDbAndConsole(iterationLogDetails);
@@ -43,9 +46,10 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Prepare exit log string */
         String exitLogDetails = String.format(
-                "EXIT | Id: %d | State: %s",
+                "EXIT | Id: %d | State: %s | Ldt: %s",
                 thread.getId(),
-                thread.getState());
+                thread.getState(),
+                this.localDateTimeNow());
 
         /* Log details to the file system DB file and print them to console */
         this.logToDbAndConsole(exitLogDetails);
@@ -56,10 +60,11 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Prepare kill log string */
         String killLogDetails = String.format(
-                "KILL | Id: %d |Name: %s | State: %s",
+                "KILL | Id: %d |Name: %s | State: %s | Ldt: %s",
                 thread.getId(),
                 thread.getName(),
-                thread.getState());
+                thread.getState(),
+                this.localDateTimeNow());
 
         /* Log details to the file system DB file and print them to console */
         this.logToDbAndConsole(killLogDetails);
@@ -89,7 +94,10 @@ public class LoggerServiceImpl implements LoggerService {
     public String logExceptionDetails(Exception e) {
 
         /* Prepare exception log string */
-        String exceptionLogDetails = String.format("EXCEPTION | Message: %s", e.getMessage());
+        String exceptionLogDetails = String.format(
+                "EXCEPTION | Message: %s | Ldt: %s",
+                e.getMessage(),
+                this.localDateTimeNow());
 
         /* Log details to the file system DB file and print them to console */
         this.logToDbAndConsole(exceptionLogDetails);
@@ -112,5 +120,13 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Print log details to console */
         System.out.println(logDetails);
+    }
+
+    private String localDateTimeNow() {
+
+        /* Obtain time now in this current format */
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return now.format(format);
     }
 }

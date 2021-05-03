@@ -54,6 +54,11 @@ public class LooperRunnableImpl implements LooperRunnable {
     }
 
     public void shutdown() {
+
+        /**
+         *  Flag the running state to false
+         *  to return from the run() method
+         **/
         running.set(false);
     }
 }

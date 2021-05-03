@@ -27,8 +27,7 @@ public class PalindromeLinkedListServiceImpl implements PalindromeLinkedListServ
         LooperLinkedList looperLinkedList = new LooperDoublyLinkedListImpl(palindrome);
 
         /* Check does the palindrome string is valid palindrome */
-        boolean isPalindrome = looperLinkedList.isPalindrome();
-        return isPalindrome;
+        return looperLinkedList.isPalindrome();
     }
 
     @Override
@@ -40,8 +39,6 @@ public class PalindromeLinkedListServiceImpl implements PalindromeLinkedListServ
         /* Export longest palindrome as JSON */
         String longestPalindrome = looperLinkedList.findLongestPalindrome();
         PalindromeLongestExportDTO palindromeExportDTO = new PalindromeLongestExportDTO(longestPalindrome);
-        String longestPalindromeJSON = this.gson.toJson(palindromeExportDTO);
-
-        return longestPalindromeJSON;
+        return this.gson.toJson(palindromeExportDTO);
     }
 }

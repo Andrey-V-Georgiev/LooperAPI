@@ -38,8 +38,8 @@ public class LooperController {
     }
 
     /**
-     *
-     */
+     * Return JSON object with the details of all the loopers
+     **/
     @GetMapping("/all-loopers-details")
     public ResponseEntity<Object> findAllLoopersDetails() throws IOException {
 
@@ -54,8 +54,8 @@ public class LooperController {
     }
 
     /**
-     *
-     */
+     * Return the details of all logs as String representation
+     **/
     @GetMapping("/all-logs-details")
     public ResponseEntity<Object> findAllLogsDetails() throws IOException {
 
@@ -73,8 +73,18 @@ public class LooperController {
     }
 
     /**
+     * Expect JSON object in the request body
+     * Start new thread for looper and log his iteration details to the log file
+     * Return the details of the started looper in JSON format
      *
-     */
+     * @param inputJson example:
+     *  {
+     *     "loopsCount": 5, //Long
+     *     "sleepMilliseconds": 1000, //Long
+     *     "text": "Some text" //String
+     *  }
+     *
+     **/
     @PostMapping("/start-new-looper")
     public ResponseEntity<Object> startNewLooper(
             @RequestBody String inputJson) throws IOException, InterruptedException {
@@ -103,8 +113,12 @@ public class LooperController {
     }
 
     /**
+     * Expect thread Id (long or integer) as path variable
+     * Kill looper by his Id
+     * Return the details of the killed looper in JSON format
      *
-     */
+     * @param threadIdStr example: 51
+     **/
     @DeleteMapping("/kill-looper/{thread-id}")
     public ResponseEntity<Object> killThread(
             @PathVariable("thread-id") String threadIdStr) throws InterruptedException {
@@ -129,8 +143,9 @@ public class LooperController {
                         .body(String.format(ExceptionsMessages.THREAD_IS_ALREADY_TERMINATED, threadId));
             }
 
-            /* If successfully terminate all threads, return the details */
-            return ResponseEntity.ok(killedThreadDetails);
+            /* If successfully terminate all threads, return the details as JSON */
+            String killedThreadDetailsJSON = this.gson.toJson(killedThreadDetails);
+            return ResponseEntity.ok(killedThreadDetailsJSON);
 
         } catch (Exception e) {
             return ResponseEntity
@@ -140,8 +155,8 @@ public class LooperController {
     }
 
     /**
-     *
-     */
+     * Terminate all threads and return the details of all killed loopers as JSON
+     **/
     @DeleteMapping("/kill-all-loopers")
     public ResponseEntity<Object> killAllLoopers() throws IOException {
 

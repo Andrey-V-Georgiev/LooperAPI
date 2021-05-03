@@ -1,7 +1,6 @@
 package com.looper_api.services.impl;
 
 import com.looper_api.services.ValidationService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;

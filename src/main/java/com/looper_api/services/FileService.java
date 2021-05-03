@@ -9,8 +9,6 @@ public interface FileService {
 
     List<String> readFileToLines(String filePath) throws IOException;
 
-    void overwriteFile(String content, String filePath) throws IOException;
-
     void overrideFile(String content, String filePath) throws IOException;
 
     boolean createDirIfNotExists(String dirPath);
