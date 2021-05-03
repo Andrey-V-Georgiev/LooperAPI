@@ -18,7 +18,7 @@ Windows OS with partition (C:)
 
 ## Details      
 
-The API works on port 8080 and can be hitted by client such Postman (or similar).    
+The API works on port 8080 and can be used by client such Postman (or similar).    
 The port is described in `application.properties` file as default.   
 Application assume that the OS is Windows and there is (C:) disk available.     
 On run will create folder on (C:) to store the data "C:\LooperAPI_DB"      
