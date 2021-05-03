@@ -29,7 +29,7 @@ public class LoggerServiceImpl implements LoggerService {
 
         /* Prepare log string */
         String iterationLogDetails = String.format(
-                "Id: %d |Name: %s | State: %s | Message: %s_%d | Iteration: %d | Ldt: %s",
+                "Id: %d | Name: %s | State: %s | Message: %s_%d | Iteration: %d | Ldt: %s",
                 thread.getId(),
                 thread.getName(),
                 thread.getState(),
