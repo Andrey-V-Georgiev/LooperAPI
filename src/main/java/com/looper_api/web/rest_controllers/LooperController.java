@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/looper")
@@ -41,7 +40,7 @@ public class LooperController {
      * Return JSON object with the details of all the loopers
      **/
     @GetMapping("/all-loopers-details")
-    public ResponseEntity<Object> findAllLoopersDetails() throws IOException {
+    public ResponseEntity<Object> findAllLoopersDetails() {
 
         /* Prepare all loopers details as JSON */
         LooperArrayList<LooperExportDTO> allLoopersDetails = this.looperService.findAllLoopersDetails();
@@ -57,7 +56,7 @@ public class LooperController {
      * Return the details of all logs as String representation
      **/
     @GetMapping("/all-logs-details")
-    public ResponseEntity<Object> findAllLogsDetails() throws IOException {
+    public ResponseEntity<Object> findAllLogsDetails() {
 
         try {
             /* Prepare all logs details and return them as string representation */
@@ -78,17 +77,17 @@ public class LooperController {
      * Return the details of the started looper in JSON format
      *
      * @param inputJson example:
-     *  {
-     *     "loopsCount": 5, //Long
-     *     "sleepMilliseconds": 1000, //Long
-     *     "text": "Some text" //String
-     *  }
-     *
+     *                  {
+     *                  "loopsCount": 5, //Long
+     *                  "sleepMilliseconds": 1000, //Long
+     *                  "text": "Some text" //String
+     *                  }
      **/
     @PostMapping("/start-new-looper")
     public ResponseEntity<Object> startNewLooper(
-            @RequestBody String inputJson) throws IOException, InterruptedException {
+            @RequestBody String inputJson) throws InterruptedException {
 
+        System.out.println();
         LooperImportDTO looperImportDTO;
         try {
             /* Convert JSON to DTO */
@@ -121,7 +120,7 @@ public class LooperController {
      **/
     @DeleteMapping("/kill-looper/{thread-id}")
     public ResponseEntity<Object> killThread(
-            @PathVariable("thread-id") String threadIdStr) throws InterruptedException {
+            @PathVariable("thread-id") String threadIdStr) {
 
         /* Validate thread id is of type long */
         Long threadId;
@@ -158,7 +157,7 @@ public class LooperController {
      * Terminate all threads and return the details of all killed loopers as JSON
      **/
     @DeleteMapping("/kill-all-loopers")
-    public ResponseEntity<Object> killAllLoopers() throws IOException {
+    public ResponseEntity<Object> killAllLoopers() {
 
         try {
             /* Kill all loopers and return a feedback with the details */

@@ -3,6 +3,8 @@ package com.looper_api.models.binding.loopers;
 import com.google.gson.annotations.Expose;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class LooperImportDTO {
@@ -23,6 +25,7 @@ public class LooperImportDTO {
         this.text = text;
     }
 
+    @NotNull(message = "Loops count field is required")
     @Min(value = 1, message = "Loops count must contains at least one iteration")
     public Long getLoopsCount() {
         return loopsCount;
@@ -32,6 +35,7 @@ public class LooperImportDTO {
         this.loopsCount = loopsCount;
     }
 
+    @NotNull(message = "Sleep milliseconds field is required")
     @Min(value = 100, message = "Timeout between loops iterations must be at least 100 milliseconds")
     public Integer getSleepMilliseconds() {
         return sleepMilliseconds;
@@ -41,6 +45,7 @@ public class LooperImportDTO {
         this.sleepMilliseconds = sleepMilliseconds;
     }
 
+    @NotEmpty(message = "Text field is required")
     @Size(min = 1, message = "Import text must be at least one character long")
     public String getText() {
         return text;
