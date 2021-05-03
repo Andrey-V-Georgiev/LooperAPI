@@ -4,7 +4,7 @@
 ## Description    
 
 This is Spring Boot REST backend application. Use file system as DB and store Logs of the different API actions.  
-There are two main parts of the API, managed by `DataStructuresController` and in the `LooperController`.
+There are two main parts of the API, managed by `DataStructuresController` and `LooperController`.
 First part represent some basic implementations of linear data structures. They are used to process simple algorithmic    
 operations like: transforming input to CSV output, check input string is it valid palindrome, find longest palindrome from string input.    
 Second part represent basic thread operations as: starting new thread, terminate thread by Id, terinate all not terminated threads, 
