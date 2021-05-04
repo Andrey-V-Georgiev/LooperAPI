@@ -87,7 +87,6 @@ public class LooperController {
     public ResponseEntity<Object> startNewLooper(
             @RequestBody String inputJson) throws InterruptedException {
 
-        System.out.println();
         LooperImportDTO looperImportDTO;
         try {
             /* Convert JSON to DTO */
@@ -133,18 +132,18 @@ public class LooperController {
         }
         try {
             /* Kill looper by his thread Id */
-            LooperExportDTO killedThreadDetails = this.looperService.killLooper(threadId);
+            LooperExportDTO killedLooperDetails = this.looperService.killLooper(threadId);
 
             /* If thread is already terminated */
-            if (killedThreadDetails == null) {
+            if (killedLooperDetails == null) {
                 return ResponseEntity
                         .status(HttpStatus.FORBIDDEN)
                         .body(String.format(ExceptionsMessages.THREAD_IS_ALREADY_TERMINATED, threadId));
             }
 
             /* If successfully terminate all threads, return the details as JSON */
-            String killedThreadDetailsJSON = this.gson.toJson(killedThreadDetails);
-            return ResponseEntity.ok(killedThreadDetailsJSON);
+            String killedLooperDetailsJSON = this.gson.toJson(killedLooperDetails);
+            return ResponseEntity.ok(killedLooperDetailsJSON);
 
         } catch (Exception e) {
             return ResponseEntity
