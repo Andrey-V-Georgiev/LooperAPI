@@ -11,8 +11,7 @@ public class LooperRunnableImpl implements LooperRunnable {
     private final Long loopsCount;
     private final Integer sleepMilliseconds;
     private final String text;
-
-    private AtomicBoolean running = new AtomicBoolean(true);
+    private final AtomicBoolean running = new AtomicBoolean(true);
 
     public LooperRunnableImpl(LoggerService loggerService, Long loopsCount, Integer sleepMilliseconds, String text) {
         this.loggerService = loggerService;

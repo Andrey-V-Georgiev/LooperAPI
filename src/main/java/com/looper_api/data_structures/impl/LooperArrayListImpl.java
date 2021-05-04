@@ -184,9 +184,11 @@ public class LooperArrayListImpl<E> implements LooperArrayList<E> {
     public String convertToCSV() {
         String csvString = "";
 
+        /* If list is not empty */
         if (this.size > 0) {
             StringBuilder sb = new StringBuilder();
 
+            /* Convert to CSV format */
             for (int i = 0; i < this.size; i++) {
                 int num = Integer.parseInt(this.elements[i].toString());
                 String prefix = num % 2 == 0 ? "e" : "o";

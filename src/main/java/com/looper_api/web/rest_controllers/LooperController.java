@@ -91,6 +91,7 @@ public class LooperController {
         try {
             /* Convert JSON to DTO */
             looperImportDTO = this.gson.fromJson(inputJson, LooperImportDTO.class);
+
         } catch (Exception e) {
             /* If user gives invalid input */
             return ResponseEntity
@@ -125,6 +126,7 @@ public class LooperController {
         Long threadId;
         try {
             threadId = Long.parseLong(threadIdStr);
+
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)

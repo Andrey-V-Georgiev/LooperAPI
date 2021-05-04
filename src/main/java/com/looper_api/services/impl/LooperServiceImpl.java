@@ -73,7 +73,7 @@ public class LooperServiceImpl implements LooperService {
     }
 
     @Override
-    public LooperExportDTO startNewLooper(LooperImportDTO dto) throws InterruptedException {
+    public LooperExportDTO startNewLooper(LooperImportDTO dto) {
 
         /* Obtain the details */
         Long loopsCount = dto.getLoopsCount();

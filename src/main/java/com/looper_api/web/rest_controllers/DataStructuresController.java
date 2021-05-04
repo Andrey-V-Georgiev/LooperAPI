@@ -13,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
 @RestController
 @RequestMapping("/data-structures")
 public class DataStructuresController {
@@ -46,12 +44,13 @@ public class DataStructuresController {
      **/
     @PutMapping("/csv-string")
     public ResponseEntity<Object> convertToCSV(
-            @RequestBody String inputJson) throws IOException {
+            @RequestBody String inputJson) {
 
         CsvImportDTO csvImportDTO;
         try {
             /* Convert json to DTO */
             csvImportDTO = this.gson.fromJson(inputJson, CsvImportDTO.class);
+
         } catch (Exception e) {
             /* If user gives wrong type of input array */
             return ResponseEntity
@@ -62,6 +61,7 @@ public class DataStructuresController {
         if (this.validationService.isValid(csvImportDTO)) {
             /* Convert input Json to CSV output */
             String csvJSON = this.csvArrayListService.convertToCSV(csvImportDTO);
+
             return ResponseEntity.ok(csvJSON);
         } else {
             /* In case of validation violations, response with violations messages */
@@ -78,7 +78,7 @@ public class DataStructuresController {
      **/
     @GetMapping("/palindrome-check")
     public ResponseEntity<Object> checkIsPalindrome(
-            @RequestParam("palindrome") String palindrome) throws IOException {
+            @RequestParam("palindrome") String palindrome) {
 
         if (palindrome.length() < 1) {
             /* If user gives empty palindrome as query param */
@@ -88,12 +88,15 @@ public class DataStructuresController {
         }
         /* Check does the string is valid palindrome */
         Boolean isPalindrome = this.palindromeLinkedListService.checkIsPalindrome(palindrome);
+
         if (isPalindrome) {
             /* In case when the string is valid palindrome */
             return ResponseEntity.ok(GlobalConstants.PALINDROME_IS_VALID);
+
         } else {
             /* In case when the string is invalid as palindrome */
             return ResponseEntity.ok(GlobalConstants.PALINDROME_IS_NOT_VALID);
+
         }
     }
 
@@ -105,7 +108,7 @@ public class DataStructuresController {
      **/
     @GetMapping("/longest-palindrome")
     public ResponseEntity<Object> findLongestPalindrome(
-            @RequestParam("palindrome-string") String palindromeString) throws IOException {
+            @RequestParam("palindrome-string") String palindromeString) {
 
         if (palindromeString.length() < 1) {
             /* If user gives empty palindrome string as query param */
@@ -115,6 +118,7 @@ public class DataStructuresController {
         }
         /* Find the longest palindrome in the string, if some */
         String longestPalindrome = this.palindromeLinkedListService.findLongestPalindrome(palindromeString);
+
         return ResponseEntity.ok(longestPalindrome);
     }
 }

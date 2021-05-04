@@ -1,8 +1,5 @@
 package com.looper_api.data_structures.impl;
 
-
-import com.google.gson.annotations.Expose;
-import com.looper_api.data_structures.LooperArrayList;
 import com.looper_api.data_structures.LooperLinkedList;
 
 import java.util.Iterator;
